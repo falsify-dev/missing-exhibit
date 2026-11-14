@@ -1,0 +1,722 @@
+[
+ {
+  "item": 1,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 2,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 3,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 4,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 5,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 6,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 7,
+  "case": "R2",
+  "ai_code": 1
+ },
+ {
+  "item": 8,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 9,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 10,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 11,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 12,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 13,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 14,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 15,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 16,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 17,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 18,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 19,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 20,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 21,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 22,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 23,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 24,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 25,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 26,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 27,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 28,
+  "case": "P4",
+  "ai_code": 2
+ },
+ {
+  "item": 29,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 30,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 31,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 32,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 33,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 34,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 35,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 36,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 37,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 38,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 39,
+  "case": "D1",
+  "ai_code": 1
+ },
+ {
+  "item": 40,
+  "case": "P4",
+  "ai_code": 2
+ },
+ {
+  "item": 41,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 42,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 43,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 44,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 45,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 46,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 47,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 48,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 49,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 50,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 51,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 52,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 53,
+  "case": "P4",
+  "ai_code": 0
+ },
+ {
+  "item": 54,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 55,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 56,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 57,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 58,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 59,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 60,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 61,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 62,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 63,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 64,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 65,
+  "case": "P4",
+  "ai_code": 0
+ },
+ {
+  "item": 66,
+  "case": "P4",
+  "ai_code": 2
+ },
+ {
+  "item": 67,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 68,
+  "case": "P4",
+  "ai_code": 2
+ },
+ {
+  "item": 69,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 70,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 71,
+  "case": "P4",
+  "ai_code": 2
+ },
+ {
+  "item": 72,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 73,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 74,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 75,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 76,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 77,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 78,
+  "case": "P4",
+  "ai_code": 2
+ },
+ {
+  "item": 79,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 80,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 81,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 82,
+  "case": "D4",
+  "ai_code": 1
+ },
+ {
+  "item": 83,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 84,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 85,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 86,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 87,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 88,
+  "case": "P1",
+  "ai_code": 1
+ },
+ {
+  "item": 89,
+  "case": "D4",
+  "ai_code": 1
+ },
+ {
+  "item": 90,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 91,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 92,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 93,
+  "case": "P4",
+  "ai_code": 2
+ },
+ {
+  "item": 94,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 95,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 96,
+  "case": "D1",
+  "ai_code": 2
+ },
+ {
+  "item": 97,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 98,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 99,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 100,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 101,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 102,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 103,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 104,
+  "case": "P4",
+  "ai_code": 0
+ },
+ {
+  "item": 105,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 106,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 107,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 108,
+  "case": "P4",
+  "ai_code": 0
+ },
+ {
+  "item": 109,
+  "case": "D4",
+  "ai_code": 1
+ },
+ {
+  "item": 110,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 111,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 112,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 113,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 114,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 115,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 116,
+  "case": "P1",
+  "ai_code": 1
+ },
+ {
+  "item": 117,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 118,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 119,
+  "case": "D4",
+  "ai_code": 1
+ },
+ {
+  "item": 120,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 121,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 122,
+  "case": "P1",
+  "ai_code": 1
+ },
+ {
+  "item": 123,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 124,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 125,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 126,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 127,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 128,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 129,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 130,
+  "case": "P1",
+  "ai_code": 2
+ },
+ {
+  "item": 131,
+  "case": "D4",
+  "ai_code": 2
+ },
+ {
+  "item": 132,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 133,
+  "case": "P2",
+  "ai_code": 2
+ },
+ {
+  "item": 134,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 135,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 136,
+  "case": "R2",
+  "ai_code": 2
+ },
+ {
+  "item": 137,
+  "case": "D3",
+  "ai_code": 2
+ },
+ {
+  "item": 138,
+  "case": "R4",
+  "ai_code": 2
+ },
+ {
+  "item": 139,
+  "case": "P4",
+  "ai_code": null
+ },
+ {
+  "item": 140,
+  "case": "R3",
+  "ai_code": 2
+ },
+ {
+  "item": 141,
+  "case": "D2",
+  "ai_code": 2
+ },
+ {
+  "item": 142,
+  "case": "R1",
+  "ai_code": 2
+ },
+ {
+  "item": 143,
+  "case": "P3",
+  "ai_code": 2
+ },
+ {
+  "item": 144,
+  "case": "P3",
+  "ai_code": 2
+ }
+]

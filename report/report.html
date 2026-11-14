@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>The Missing Exhibit</title>
+<style>
+@page { size: A4; margin: 20mm 19mm 20mm 19mm; }
+body { font-family: "Charter", "Georgia", serif; font-size: 10.4pt; line-height: 1.42; color: #111; }
+h1 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 18pt; margin: 0 0 4pt; line-height: 1.2; }
+h2 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 12pt; margin: 14pt 0 4pt; }
+h3 { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10.5pt; margin: 10pt 0 3pt; }
+.authors { font-family: "Helvetica Neue", Arial, sans-serif; font-size: 10pt; margin-bottom: 10pt; color: #333; }
+.abstract { border-left: 3px solid #2e8b57; padding: 4pt 10pt; margin: 8pt 0 10pt; background: #f6f8f6; }
+table { border-collapse: collapse; font-size: 9pt; margin: 6pt 0; width: 100%; }
+th, td { border-bottom: 1px solid #ccc; padding: 3pt 5pt; text-align: left; vertical-align: top; }
+th { border-bottom: 1.5px solid #333; font-family: "Helvetica Neue", Arial, sans-serif; font-size: 8.6pt; }
+.cap { font-size: 8.8pt; color: #333; margin: 2pt 0 10pt; }
+code, .mono { font-family: "Menlo", monospace; font-size: 8.6pt; }
+blockquote { margin: 6pt 14pt; font-size: 9.6pt; color: #222; }
+.fn { font-size: 8.5pt; color: #444; }
+ol.refs li { margin-bottom: 3pt; font-size: 9.2pt; }
+.pb { page-break-before: always; }
+img { width: 100%; }
+</style></head>
+<body>
+
+<h1>The Missing Exhibit: Do AI Agents Ask for the Evidence That Would Change Their Verdict?</h1>
+<div class="authors">Cuneyt Ozturk, Falsify OÜ (Tallinn, Estonia) &nbsp;·&nbsp; with Apart Research<br>
+<span class="fn">Research conducted at the AI x Epistemics Research Sprint, November 2026. Track 2: Trust Infrastructure.</span></div>
+
+<div class="abstract"><b>Abstract.</b>
+AI agents increasingly review evidence for people. A useful reviewer must notice when the file does not settle a claim, ask for the one document that would, and update correctly when it arrives. We test this with 16 synthetic cases in which a vendor claims its model passed an evaluation. Each file contains a cryptographically valid record of the acceptance criteria that does not, by itself, settle the claim. We vary how that record is framed (a plain registry lookup vs. a "VERIFIED RECEIPT" label with identical content) with Claude Opus 5.5 and Claude Sonnet 5.5, three repetitions each (480 calls). Both models withheld judgment on 140 of 144 ambiguous presentations, were correct on all 48 control presentations, and usually requested a document that targets the missing fact. The label had no consistent effect. The one systematic error was a specific misreading of the record: in the case where the vendor argued "the hash matches a record made before the contract, so the threshold never changed", Opus accepted the argument in all three plain-framed repetitions. A timestamped hash shows that one file existed by a date; it says nothing about later versions. After a pre-specified document arrived, refuting evidence was absorbed almost always (130/132, excluding a flawed case), supporting evidence less often by Opus (50/66), which mostly asked for verifiable provenance of vendor-supplied documents. Our main takeaway: the failure to guard against is not credulity toward labels but over-reading what a valid record proves.
+</div>
+
+<h2>1. Introduction</h2>
+<p>Evaluation claims increasingly arrive with machine-checkable evidence attached: hashes of criteria files, timestamps, signed logs. At the same time, much of the reading is moving to AI assistants. Two recent documents frame why this matters. A Carnegie report on implementing California's SB 53 recommends that records kept by independent assessors be tamper-evident and that oversight check "changes to or deviations from previously specified assessment methodology" [2]. An open letter from MEPs and AI researchers to EU leaders notes that the AI Act's heaviest general-purpose AI obligations "rest on self-declaration by providers" and asks for verification that shows "whether evaluation results are genuine" [3]. And METR's investigation of a July 2026 incident documents agents that, facing tasks they could not pass, coordinated to fool the automated scorer [1].</p>
+<p>Records of this kind answer narrow questions. A timestamped hash of a criteria file shows that those exact bytes existed no later than the timestamp and that a copy shown later matches them. It does not show that the evaluation used that file, that no later version exists, or that the result is correct. A reviewer, human or AI, that reads more into the record than it proves will accept unsupported claims while feeling well-evidenced. We ask whether current frontier models make that mistake, whether a confident label makes it worse, and whether the models know which document they are missing.</p>
+<p>Our main contributions are:</p>
+<ol>
+<li>A small, fully synthetic benchmark of 12 ambiguous and 4 control evaluation-claim cases, each with a valid but non-decisive criteria record, a written "missing fact", and two pre-specified follow-up documents that settle the claim either way.</li>
+<li>A two-stage protocol that separates three behaviours usually blended in one score: withholding judgment, asking for the right evidence, and updating once it arrives. Stage 2 copies the same first answer into two branches, so each branch sees one document and not the other.</li>
+<li>Results for two current models showing near-ceiling caution, no measurable label effect, and one sharp failure mode: treating a matching hash as proof that nothing changed afterwards.</li>
+</ol>
+
+<h2>2. Related Work</h2>
+<p><b>Evaluation integrity in practice.</b> METR's incident report [1] shows evaluation pressure producing scorer manipulation at scale; our cases concern the quieter failure, where nothing is broken and the claim is simply not settled by the file. The Carnegie implementation guide [2] lists record-keeping practices for assessors (evaluation plans with their change history, tamper-evident storage, checks for deviations from pre-specified methodology). We study the reader of such records rather than the records themselves.</p>
+<p><b>Pre-registration for AI experiments.</b> Vaccaro [5] argues for preregistering experiments with AI agents. Pre-registration produces exactly the kind of record our cases contain; our results suggest that readers also need guidance on what such a record does not establish.</p>
+<p><b>Who writes the record.</b> Dai et al. [6] show that a hash chain over an agent harness's own record passes every omission and fabrication they inject, while a second, independently kept log catches them: what makes a record evidence is who writes it. Our stage-2 results echo this: the stricter model discounted vendor-supplied supporting documents that lacked independent provenance.</p>
+<p><b>Mitigation taxonomies.</b> The MIT AI Risk Mitigation Repository [4] places evaluation and audit among the most frequently reported mitigation instruments and its worked example asks for risk thresholds "set before development proceeds" that "can be inspected". Our study probes the next step: whether an AI reviewer reads such an inspectable threshold correctly.</p>
+<p><b>Difference.</b> To our knowledge, prior work does not test whether AI reviewers request the decisive missing document and how they update when it arrives, with valid-but-insufficient cryptographic records as the distractor.</p>
+
+<h2>3. Methods</h2>
+<h3>3.1 Cases</h3>
+<p>Each case has a vendor claim, an evidence file (one to three short documents), and a criteria record. The record is always valid: its hash matches the file in the pack and it carries an RFC 3161 timestamp [7]. The 12 ambiguous cases fall into three groups of four:</p>
+<ul>
+<li><b>Plan version and timing</b> (P1 to P4): was the threshold agreed by the buyer, set before results were seen, the one the run was scored against, the only version ever recorded?</li>
+<li><b>Dataset and scope</b> (D1 to D4): what a filter removed, per-region results behind a pooled number, train/test contamination, which population the sample represents.</li>
+<li><b>Which run</b> (R1 to R4): whether the tested checkpoint is the released one, how many runs were executed, who executed them, whether production still runs the evaluated model.</li>
+</ul>
+<p>For each ambiguous case we wrote, before running any model, the missing fact (the coding key) and two follow-up documents: <i>a</i> settles the claim as SUPPORTED, <i>b</i> as REFUTED. The four control cases contain everything needed: two are settled as SUPPORTED, two as REFUTED. All case text is in the repository; Appendix A shows one case in full.</p>
+
+<h3>3.2 Framing manipulation</h3>
+<p>The same record content was presented in two ways. <i>Plain</i>: "Registry lookup (performed by the procurement team): the file … has SHA-256 …; the registry entry carries an RFC 3161 timestamp of …; the hash of the file in this evidence pack matches." <i>Label</i>: a boxed header "[VERIFIED RECEIPT] status: VALID" followed by the same fields. Nothing else differs.</p>
+
+<h3>3.3 Protocol</h3>
+<p><b>Stage 1.</b> The model sees the claim and the file and answers in a fixed format: VERDICT (SUPPORTED, REFUTED or UNDETERMINED), REQUEST (one document, or NONE), FACT (what it would establish) and a short REASON. <b>Stage 2</b> (ambiguous cases only). The stage-1 exchange, including the model's own answer, is copied into two branches. Each branch adds "The vendor has since supplied this document:" followed by follow-up <i>a</i> or <i>b</i>, regardless of what the model asked for, and asks for a final answer in the same format.</p>
+
+<h3>3.4 Models and parameters</h3>
+<p>Claude Opus 5.5 and Claude Sonnet 5.5 via the Anthropic Messages API, adaptive thinking, effort set explicitly to <span class="mono">medium</span> for both, a one-sentence system prompt, no sampling parameters. 16 cases × 2 framings × 2 models × 3 repetitions = 192 stage-1 calls and 288 stage-2 calls (480 in total; all ended normally, none failed to parse). A 3-case pilot (14 calls) was run first and is not included. Total API cost: US$4.55 for the experiment and US$0.48 for coding.</p>
+
+<h3>3.5 Measures and coding</h3>
+<p>Verdicts are scored automatically. The quality of document requests was coded on a 0 to 2 scale (2 = would establish the missing fact, a different document with the same information also counts; 1 = partly; 0 = no). Two AI coders (Claude Opus 5.5 at low effort and Claude Sonnet 5.5 at medium effort) coded all 144 ambiguous stage-1 requests from a shuffled sheet that hid the model and framing. No human coding was done (see Limitations). With 12 ambiguous cases we report counts with their denominators and make no significance claims; repetitions are not independent cases.</p>
+
+<h2>4. Results</h2>
+<h3>4.1 Stage 1: withholding judgment</h3>
+<table>
+<tr><th>Cell</th><th>Ambiguous: SUPPORTED (error)</th><th>Ambiguous: UNDETERMINED</th><th>Ambiguous: asked for a document</th><th>Controls: correct</th></tr>
+<tr><td>Opus 5.5, plain</td><td>3/36</td><td>33/36</td><td>33/36</td><td>12/12</td></tr>
+<tr><td>Opus 5.5, label</td><td>0/36</td><td>36/36</td><td>36/36</td><td>12/12</td></tr>
+<tr><td>Sonnet 5.5, plain</td><td>0/36</td><td>36/36</td><td>36/36</td><td>12/12</td></tr>
+<tr><td>Sonnet 5.5, label</td><td>1/36</td><td>35/36</td><td>35/36</td><td>12/12</td></tr>
+</table>
+<div class="cap"><b>Table 1.</b> Stage-1 verdicts. Ambiguous: 12 cases × 3 repetitions per cell. Controls: 4 cases × 3 repetitions. No ambiguous presentation was answered REFUTED; no control was answered UNDETERMINED. Stage-1 verdicts were identical across all three repetitions in 63 of 64 case-model-framing cells.</div>
+<p>Both models were cautious where caution was warranted and decisive where the file settled the claim. The label did not increase acceptance: errors were 3 (plain) vs. 0 (label) for Opus and 0 vs. 1 for Sonnet. All four errors occurred in a single case.</p>
+
+<h3>4.2 The one systematic error: reading "unchanged since" into a hash</h3>
+<p>In case P4 the vendor claims the acceptance threshold "has not changed since the contract was signed", and argues that its file's hash matches a registry entry timestamped the day before signature. The record is genuine. What it cannot show is that no later version was recorded and used. Opus accepted the claim in all three plain-framed repetitions, with reasoning such as:</p>
+<blockquote>"Any change to the threshold would change the file's hash, so the threshold … is the same one recorded before signature."</blockquote>
+<p>The inference is valid for the file in hand and invalid for the claim: the hash proves this file did not change, not that the buyer is still being measured against it. Sonnet made the same move once, in the labelled framing. In the follow-up branch that showed a second criteria version recorded in April and cited by later reports, every model in every cell switched to REFUTED, so the error is one of inference from the record, not of comprehension.</p>
+
+<h3>4.3 Asking for the right document</h3>
+<p>The two coders agreed exactly on 120 of 144 requests (quadratic-weighted κ = 0.43; κ is depressed by the ceiling: 111 of 144 items were coded 2 by both). Mean request scores (average of both coders, 0 to 2): Sonnet 1.93 (plain) and 1.88 (label); Opus 1.65 and 1.76. The lowest-scoring case was P4 (1.25): the four presentations that accepted the claim requested nothing, and one Opus request asked for the registry log only up to the signature date, which cannot reveal a later version.</p>
+
+<h3>4.4 Stage 2: updating when the document arrives</h3>
+<img src="../results/figure1.png" alt="Figure 1">
+<div class="cap"><b>Figure 1.</b> Final verdicts after a pre-specified follow-up document, by model and framing, excluding case D4 (see below). 33 presentations per bar (11 cases × 3 repetitions). Green: switched to the verdict the document settles. Grey: stayed UNDETERMINED. No presentation switched to the opposite verdict.</div>
+<p>Refuting documents were absorbed almost without exception (130 of 132). Supporting documents were absorbed by Sonnet in 65 of 66 presentations but by Opus in only 50 of 66. On reading the residual cases, most Opus refusals point to real gaps that we left in the supporting documents: a compute export without job start times, so a run could still predate the record (R2); a contamination report produced by the vendor itself, with no dataset hash or third-party attestation (D3); an execution record "supplied by the vendor" without the lab's signature (R3). We read these as a stricter evidence standard applied to vendor-supplied documents that favour the vendor, which is a defensible policy, and as a sign that our supporting documents were weaker than intended.</p>
+<p><b>A flawed case.</b> In D4 neither follow-up settled the claim as designed: knowing which population the contract specifies does not establish how the 2024 sample was drawn, and a sample that omits a product line shows the claim is unsupported rather than false. Both models stayed UNDETERMINED in both branches in all 24 presentations, which we count as correct behaviour and a case-construction error on our side. With D4 included, each stage-2 rate in Figure 1 falls by 6 to 8 points; the qualitative pattern is unchanged.</p>
+
+<h2>5. Discussion and Limitations</h2>
+<p><b>What the results mean.</b> On these cases, current frontier models are not credulous toward cryptographic labels: a "VERIFIED RECEIPT" header did not move them. The risk we found is subtler and more relevant to trust infrastructure: a valid record invites inferences it cannot support. "This file has not changed" slides into "nothing has changed". Systems that attach records to evaluation claims should state, next to the record, what it does not establish; prompts or tools for AI reviewers could ask explicitly "what would a later version look like, and how would we know?". The asymmetry in stage 2 suggests a second design point: documents that help the party who supplied them are discounted unless their provenance is independently checkable.</p>
+<p><b>Limitations.</b> (1) <i>Ceiling and size.</i> 12 ambiguous cases are too few for statistical claims, and most measures are near the ceiling. The interesting variance sits in one case (P4) and in our own imperfect supporting documents; a larger and harder case set is needed. (2) <i>Single provider.</i> Both subjects and both coders are Claude models from one provider; results do not generalise to AI agents in general, and AI coders may share the subjects' blind spots. (3) <i>No human coding.</i> The design called for blind human coding; under time pressure it was replaced by a second AI coder. Agreement between the two AI coders was moderate. (4) <i>Author-written cases and keys.</i> The author wrote the cases, the missing-fact keys and the follow-up documents; D4 and several supporting documents show the keys were imperfect. (5) <i>Single-turn reviewer.</i> Real reviewers can search, ask several questions and use tools; we allowed one request and did not honour it. (6) <i>One setting.</i> Effort was fixed at medium; we did not test higher effort, other system prompts or other framings of the record.</p>
+<p><b>Future work.</b> A larger case set written with external reviewers; cases where the record is subtly invalid as well as insufficient; multi-provider subjects; human coding; and an intervention arm that adds a one-line statement of what the record does not prove.</p>
+
+<h2>6. Conclusion</h2>
+<p>Two current frontier models were careful reviewers of evaluation claims in our synthetic set: they withheld judgment when the file was insufficient, asked for documents that target the gap, ignored a confident label, and updated on decisive evidence, with a stricter standard for vendor-supplied support. Their one systematic error was reading a timestamped hash as proof that nothing changed afterwards. That is the error trust infrastructure should design against, by stating plainly what each record does and does not establish.</p>
+
+<h2>Code and Data</h2>
+<ul>
+<li>Code repository (cases, prompts, runner, analysis, raw responses with request IDs): <span class="mono">https://github.com/falsify-dev/missing-exhibit</span></li>
+<li>Data: synthetic cases only; no personal or third-party data. No info-hazard concerns identified.</li>
+</ul>
+<p class="fn"><b>Preexisting work.</b> A two-page design note (5 November 2026) was written before the sprint; no cases, prompts or code existed. All cases, code, runs and this report were produced during the sprint. <b>Conflict of interest.</b> The author maintains PRML, an open specification for evaluation records, and Falsify OÜ offers paid services for preparing and reviewing such records. The study uses synthetic cases, does not use or require PRML, and measures how AI reviewers interpret evidence, not whether anyone should adopt a particular tool.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>METR (2026). Hugging Face incident investigation report. Published 26 August 2026. https://metr.org/hugging-face-incident-report-aug-2026.pdf</li>
+<li>Singer, S. R., et al. (2026). <i>Trust but Verify: Implementing Frontier AI Policy in California and Beyond.</i> Carnegie Endowment for International Peace.</li>
+<li>Van Lanschot, R., Sieper, L., Russell, S., et al. (2026). <i>Ensuring safety and security of frontier AI.</i> Open letter to the President of the European Council and EU Heads of State and Government, 12 November 2026.</li>
+<li>Saeri, A. K., Zhao, K., Slattery, P., et al. (2026). <i>The AI Risk Mitigation Repository: A systematic review and multi-taxonomy framework of mitigations across AI systems, organizations, and ecosystems.</i> MIT AI Risk Initiative.</li>
+<li>Vaccaro, M. (2026). Preregistration for Experiments with AI Agents. arXiv:2606.11217.</li>
+<li>Dai, J., Yang, Z., Shao, P., Ng, K., Liu, Z., Ju, C., He, Y., Hu, B. (2026). Hearsay: Can an Auditor Trust the Record a Deployed Agent Harness Writes? arXiv:2609.32495.</li>
+<li>Adams, C., Cain, P., Pinkas, D., Zuccherato, R. (2001). <i>Internet X.509 Public Key Infrastructure Time-Stamp Protocol (TSP).</i> RFC 3161, IETF.</li>
+</ol>
+
+<div class="pb"></div>
+<h2>Appendix A. Example case (P4) as shown in the plain framing</h2>
+<p class="mono" style="white-space:pre-wrap">Vendor claim: The acceptance threshold has not changed since the contract was signed on 15 January 2026.
+
+Registry lookup (performed by the procurement team): the file acceptance-2026-01.yaml has SHA-256 4d8a...c2f0. The registry entry for this hash carries an RFC 3161 timestamp of 2026-01-14 18:05 UTC. The hash of the file in this evidence pack matches the registry entry. The recorded file contains: metric AUC, threshold >= 0.88, dataset triage-eval-v1
+
+Document 1. Vendor letter, 9 September 2026: 'Attached is our acceptance file. Its hash matches the registry entry timestamped the day before contract signature, so the threshold is unchanged.'
+
+Document 2. Contract, signed 15 January 2026, clause 7: 'Acceptance per the criteria file recorded in the registry before signature.'</p>
+<p>Missing fact (coding key, not shown to models): whether later criteria versions for the same project exist in the registry. Follow-up <i>a</i>: a full registry history with one entry, cited by all 2026 reports. Follow-up <i>b</i>: a second version (AUC ≥ 0.84) recorded 2 April 2026 and cited by the Q2 and Q3 reports.</p>
+
+<h2>Appendix B. Prompts</h2>
+<p class="fn">System prompt: "You are an assistant helping a procurement team decide whether to accept an AI vendor's claim about how its model performed in an evaluation. Judge only what the evidence shows. Be concise." The stage-1 and stage-2 user prompts and the answer format are in <span class="mono">run.py</span>; the coding rubric is in <span class="mono">code_ai.py</span>.</p>
+
+<h2>Appendix C. Limitations and Dual-Use / Ethical Considerations</h2>
+<p><b>Limitations</b> are listed in Section 5. <b>Dual use.</b> The cases describe ways a vendor could present a valid-looking record that does not support its claim; in principle this could help someone craft misleading evidence packs. The patterns are elementary (unrecorded later versions, filtered test sets, unstated run counts) and already discussed in public evaluation-integrity literature; we judge that showing reviewers how such packs fail outweighs the marginal help to a deceiver. <b>Ethics.</b> No human subjects or personal data. All cases are fictional; no real vendor, buyer or model is depicted. <b>Conflict of interest</b> is declared above.</p>
+
+<h2>LLM Usage Statement</h2>
+<p>Claude (Anthropic) was used as a coding and writing assistant throughout the sprint: under the author's direction it drafted the cases, the runner and analysis code, the figure and a first draft of this report. The study design predates the sprint and is the author's. The models under study (Claude Opus 5.5 and Claude Sonnet 5.5) and the two coders of document requests are also Claude models, as stated in Section 3. The author reviewed the cases, the code and every number in this report against the raw outputs in the repository.</p>
+
+</body></html>

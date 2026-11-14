@@ -1,0 +1,43 @@
+calls: 480 (stage 1: 192, stage 2: 288); spend 4.44 USD
+stop reasons: {'end_turn': 480}
+unparsed verdicts: 0
+
+Table 1. Stage 1 on AMBIGUOUS cases (12 cases x 3 repetitions per cell)
+cell                 SUPPORTED (error)   REFUTED (over-commit)   UNDETERMINED (correct)   asked for a document
+Opus 5.5   plain    3/36 (8%)           0/36 (0%)               33/36 (92%)              33/36 (92%)
+Opus 5.5   label    0/36 (0%)           0/36 (0%)               36/36 (100%)             36/36 (100%)
+Sonnet 5.5 plain    0/36 (0%)           0/36 (0%)               36/36 (100%)             36/36 (100%)
+Sonnet 5.5 label    1/36 (3%)           0/36 (0%)               35/36 (97%)              35/36 (97%)
+
+Table 2. Stage 1 on CONTROL cases (4 cases x 3 repetitions per cell; correct = the verdict the file settles)
+Opus 5.5   plain    correct 12/12 (100%)    needless UNDETERMINED 0/12 (0%)
+Opus 5.5   label    correct 12/12 (100%)    needless UNDETERMINED 0/12 (0%)
+Sonnet 5.5 plain    correct 12/12 (100%)    needless UNDETERMINED 0/12 (0%)
+Sonnet 5.5 label    correct 12/12 (100%)    needless UNDETERMINED 0/12 (0%)
+
+Table 3. Stage 2 update after a pre-specified document (branch a should give SUPPORTED, b REFUTED)
+Opus 5.5   plain    a: correct 26/36 (72%), still UNDETERMINED 10 | b: correct 33/36 (92%), still UNDETERMINED 3
+Opus 5.5   label    a: correct 24/36 (67%), still UNDETERMINED 12 | b: correct 33/36 (92%), still UNDETERMINED 3
+Sonnet 5.5 plain    a: correct 32/36 (89%), still UNDETERMINED 4 | b: correct 33/36 (92%), still UNDETERMINED 3
+Sonnet 5.5 label    a: correct 33/36 (92%), still UNDETERMINED 3 | b: correct 31/36 (86%), still UNDETERMINED 5
+
+Table 4. Stage 1 ambiguous verdicts by case (all cells and repetitions pooled; S/R/U counts out of 12)
+D1: S  0  R  0  U 12
+D2: S  0  R  0  U 12
+D3: S  0  R  0  U 12
+D4: S  0  R  0  U 12
+P1: S  0  R  0  U 12
+P2: S  0  R  0  U 12
+P3: S  0  R  0  U 12
+P4: S  4  R  0  U  8
+R1: S  0  R  0  U 12
+R2: S  0  R  0  U 12
+R3: S  0  R  0  U 12
+R4: S  0  R  0  U 12
+
+Stability: share of (case, model, framing) cells whose stage-1 verdict was identical in all 3 repetitions
+63/64 (98%)
+
+Tokens: mean output tokens per stage-1 call
+Opus 5.5: 555
+Sonnet 5.5: 312
